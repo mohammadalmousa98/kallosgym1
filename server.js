@@ -1,17 +1,14 @@
 // server.js
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// server.js
+const express = require("express");
+const path = require("path");
 
 const app = express();
 const buildPath = path.join(__dirname, "dist");
 
 app.use(express.static(buildPath));
 
-// SPA fallback: always serve index.html
+// SPA fallback
 app.get("*", (_req, res) => {
   res.sendFile(path.join(buildPath, "index.html"));
 });
